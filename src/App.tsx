@@ -1,10 +1,11 @@
-import './App.css'
+import "./App.css";
+import Home from "./Componets/Home";
 function App() {
   return (
     <div>
-      <h1 className="text-5xl"> Hello Hira </h1>
+      <Home />
     </div>
-  )
+  );
 }
 
-export default App
+export default App;
