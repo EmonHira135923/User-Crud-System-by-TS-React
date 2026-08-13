@@ -1,9 +1,13 @@
+import { Button } from "@heroui/react";
 import "./App.css";
-import Home from "./Componets/Home";
+import Home from "./Components/Home";
 function App() {
   return (
     <div>
       <Home />
+      <Button>
+        My Button
+      </Button>
     </div>
   );
 }
