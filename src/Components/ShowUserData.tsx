@@ -1,15 +1,5 @@
 import React from "react";
 import type { UserTypes } from "../types/user";
-import {
-  Card,
-  CardHeader,
-  CardBody,
-  Avatar,
-  Chip,
-  Button,
-  Divider,
-  Link,
-} from "@heroui/react";
 
 export interface UserProps {
   user: UserTypes;
@@ -17,16 +7,14 @@ export interface UserProps {
 
 const ShowUserData: React.FC<UserProps> = ({ user }) => {
   return (
-    <Card className="w-full max-w-sm bg-white/80 backdrop-blur-md border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-2xl">
+    <div className="w-full max-w-sm bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-2xl overflow-hidden flex flex-col justify-between">
       {/* Header with Avatar, Name, Username & ID */}
-      <CardHeader className="flex justify-between items-start p-4 pb-2">
+      <div className="flex justify-between items-start p-4 pb-2">
         <div className="flex gap-3 items-center">
-          <Avatar
-            isBordered
-            color="primary"
-            radius="full"
-            size="md"
+          <img
             src={`https://i.pravatar.cc/150?u=${user.id}`}
+            alt={user.name}
+            className="w-10 h-10 rounded-full border-2 border-blue-500 object-cover"
           />
           <div className="flex flex-col items-start">
             <h3 className="text-base font-bold text-slate-800 leading-tight">
@@ -37,17 +25,13 @@ const ShowUserData: React.FC<UserProps> = ({ user }) => {
             </span>
           </div>
         </div>
-        <Chip
-          color="primary"
-          variant="flat"
-          size="sm"
-          className="font-semibold text-xs"
-        >
+        <span className="bg-blue-100 text-blue-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">
           #{user.id}
-        </Chip>
-      </CardHeader>
+        </span>
+      </div>
 
-      <CardBody className="px-4 py-3 text-xs text-slate-600 flex flex-col gap-3">
+      {/* Body Section */}
+      <div className="px-4 py-3 text-xs text-slate-600 flex flex-col gap-3">
         {/* Company Info */}
         <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-100 flex flex-col gap-0.5">
           <div className="flex items-center gap-1.5 text-slate-800 font-semibold text-xs">
@@ -58,18 +42,14 @@ const ShowUserData: React.FC<UserProps> = ({ user }) => {
             "{user.company.catchPhrase}"
           </p>
           <div className="mt-1 pl-5">
-            <Chip
-              size="sm"
-              variant="dot"
-              color="success"
-              className="text-[10px] h-5"
-            >
+            <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded-full">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
               {user.company.bs}
-            </Chip>
+            </span>
           </div>
         </div>
 
-        <Divider />
+        <hr className="border-slate-100" />
 
         {/* Contact Information */}
         <div className="flex flex-col gap-2">
@@ -87,17 +67,18 @@ const ShowUserData: React.FC<UserProps> = ({ user }) => {
 
           <div className="flex items-center gap-2">
             <span className="text-slate-400">🌐</span>
-            <Link
-              isExternal
+            <a
               href={`https://${user.website}`}
+              target="_blank"
+              rel="noopener noreferrer"
               className="text-xs font-semibold text-blue-600 hover:underline"
             >
               {user.website}
-            </Link>
+            </a>
           </div>
         </div>
 
-        <Divider />
+        <hr className="border-slate-100" />
 
         {/* Address & Coordinates */}
         <div className="flex flex-col gap-1 text-slate-600">
@@ -122,17 +103,12 @@ const ShowUserData: React.FC<UserProps> = ({ user }) => {
 
         {/* Profile Action Button */}
         <div className="pt-2">
-          <Button
-            size="sm"
-            color="primary"
-            variant="solid"
-            className="w-full font-semibold shadow-md shadow-blue-500/20 rounded-xl"
-          >
+          <button className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-2 px-4 rounded-xl shadow-md shadow-blue-500/20 transition-colors duration-200">
             View Details
-          </Button>
+          </button>
         </div>
-      </CardBody>
-    </Card>
+      </div>
+    </div>
   );
 };
 
