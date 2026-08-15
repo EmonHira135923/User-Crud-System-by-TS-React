@@ -9,3 +9,21 @@ export const getUsers = async (): Promise<UserTypes[]> => {
   }
   return res.json();
 };
+
+export const addUsers = async (
+  user: Omit<UserTypes, "id">,
+): Promise<UserTypes[]> => {
+  const res = await fetch(API_URL, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  if (!res.ok) {
+    throw new Error("Failed To Patch Data");
+  }
+
+  return res.json();
+};
