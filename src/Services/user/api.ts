@@ -12,7 +12,7 @@ export const getUsers = async (): Promise<UserTypes[]> => {
 
 export const addUsers = async (
   user: Omit<UserTypes, "id">,
-): Promise<UserTypes[]> => {
+): Promise<UserTypes> => {
   const res = await fetch(API_URL, {
     method: "POST",
     headers: {
