@@ -1,6 +1,6 @@
 import React from "react";
 import type { UserTypes } from "../types/user";
-import { deleteUsers } from "../Services/user/api";
+import { deleteUsers, updateUsers } from "../Services/user/api";
 
 export interface UserProps {
   user: UserTypes;
@@ -15,6 +15,18 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
       setUsers((user) => user.filter((u) => u.id !== id));
     } catch (err) {
       setError("Failed To Delete Users");
+    }
+  };
+
+  const updateUser = async (id: number, updatedUser: Partial<UserTypes>) => {
+    try {
+      await updateUsers(id, updatedUser);
+      // Merge the updated fields into the existing user object
+      setUsers((prevUsers) =>
+        prevUsers.map((u) => (u.id === id ? { ...u, ...updatedUser } : u)),
+      );
+    } catch (error) {
+      setError("Update not Done");
     }
   };
 
@@ -117,6 +129,7 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
           {/* Update Button */}
           <button
             type="button"
+            onClick={() => updateUser(user.id)}
             className="flex-1 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-2 px-3 rounded-xl shadow-sm shadow-blue-500/20 transition-all duration-200 text-xs sm:text-sm"
           >
             Update

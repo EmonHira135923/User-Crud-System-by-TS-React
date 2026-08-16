@@ -37,3 +37,22 @@ export const deleteUsers = async (id: number): Promise<void> => {
     throw new Error("Users Not Deleted");
   }
 };
+
+export const updateUsers = async (
+  id: number,
+  user: Partial<UserTypes>,
+): Promise<UserTypes> => {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: "PATCH",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(user),
+  });
+
+  if (!res.ok) {
+    throw new Error("Update User Done");
+  }
+
+  return res.json();
+};
