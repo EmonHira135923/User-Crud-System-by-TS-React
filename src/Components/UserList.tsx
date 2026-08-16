@@ -8,7 +8,7 @@ interface UserListProps {
   error: string | null;
 }
 
-const UserList: React.FC<UserListProps> = ({ users, loading, error }) => {
+const UserList: React.FC<UserListProps> = ({ users, loading, error,setError,setUsers }) => {
   // Loading State
   if (loading) {
     return (
@@ -85,7 +85,7 @@ const UserList: React.FC<UserListProps> = ({ users, loading, error }) => {
       {/* Responsive Grid Layout */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 justify-items-center">
         {users.map((user) => (
-          <ShowUserData user={user} key={user.id} />
+          <ShowUserData setUsers={setUsers} user={user} key={user.id} error={error} setError={setError} />
         ))}
       </div>
     </section>

@@ -27,3 +27,13 @@ export const addUsers = async (
 
   return res.json();
 };
+
+export const deleteUsers = async (id: number): Promise<void> => {
+  const res = await fetch(`${API_URL}/${id}`, {
+    method: "DELETE",
+  });
+
+  if (!res.ok) {
+    throw new Error("Users Not Deleted");
+  }
+};

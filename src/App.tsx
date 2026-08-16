@@ -38,7 +38,7 @@ function App() {
 
       <AddUser users={users} setUsers={setUsers} />
 
-      <UserList users={users} loading={loading} error={error} />
+      <UserList users={users} setUsers={setUsers} loading={loading} error={error} setError={setError} />
     </div>
   );
 }

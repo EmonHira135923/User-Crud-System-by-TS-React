@@ -1,11 +1,17 @@
 import React from "react";
 import type { UserTypes } from "../types/user";
+import { deleteUsers } from "../Services/user/api";
 
 export interface UserProps {
   user: UserTypes;
 }
 
 const ShowUserData: React.FC<UserProps> = ({ user }) => {
+  const deleteUser = async (id: number) => {
+    const res = await deleteUsers(id);
+    console.log(res);
+  };
+
   return (
     <div className="w-full max-w-sm bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-2xl overflow-hidden flex flex-col justify-between">
       {/* Header with Avatar, Name, Username & ID */}
@@ -101,10 +107,22 @@ const ShowUserData: React.FC<UserProps> = ({ user }) => {
           </div>
         </div>
 
-        {/* Profile Action Button */}
-        <div className="pt-2">
-          <button className="w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-2 px-4 rounded-xl shadow-md shadow-blue-500/20 transition-colors duration-200">
-            View Details
+        <div className="pt-4 mt-4 border-t border-slate-100 flex gap-2">
+          {/* Update Button */}
+          <button
+            type="button"
+            className="flex-1 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-2 px-3 rounded-xl shadow-sm shadow-blue-500/20 transition-all duration-200 text-xs sm:text-sm"
+          >
+            Update
+          </button>
+
+          {/* Delete Button */}
+          <button
+            type="button"
+            onClick={() => deleteUser(user.id)}
+            className="flex-1 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-semibold py-2 px-3 rounded-xl shadow-sm shadow-red-500/20 transition-all duration-200 text-xs sm:text-sm"
+          >
+            Delete
           </button>
         </div>
       </div>
