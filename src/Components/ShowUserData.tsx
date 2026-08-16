@@ -47,17 +47,17 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
 
   return (
     <>
-      <div className="w-full max-w-sm bg-white/90 backdrop-blur-md border border-slate-200/80 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300 rounded-2xl overflow-hidden flex flex-col justify-between">
+      <div className="w-full max-w-sm bg-white border border-slate-200 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 rounded-2xl overflow-hidden flex flex-col justify-between">
         {/* Header with Avatar, Name, Username & ID */}
-        <div className="flex justify-between items-start p-4 pb-2">
+        <div className="flex justify-between items-start p-4 pb-3 bg-slate-50 border-b border-slate-100">
           <div className="flex gap-3 items-center">
             <img
               src={`https://i.pravatar.cc/150?u=${user.id}`}
               alt={user.name}
-              className="w-10 h-10 rounded-full border-2 border-blue-500 object-cover"
+              className="w-11 h-11 rounded-full border-2 border-indigo-500 object-cover"
             />
             <div className="flex flex-col items-start">
-              <h3 className="text-base font-bold text-slate-800 leading-tight">
+              <h3 className="text-base font-bold text-slate-900 leading-tight">
                 {user.name}
               </h3>
               <span className="text-xs font-medium text-slate-400">
@@ -65,15 +65,15 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
               </span>
             </div>
           </div>
-          <span className="bg-blue-100 text-blue-700 text-xs font-semibold px-2.5 py-0.5 rounded-full">
+          <span className="bg-amber-100 text-amber-800 text-xs font-bold px-2.5 py-0.5 rounded-full border border-amber-200">
             #{user.id}
           </span>
         </div>
 
         {/* Body Section */}
-        <div className="px-4 py-3 text-xs text-slate-600 flex flex-col gap-3">
+        <div className="px-4 py-4 text-xs text-slate-600 flex flex-col gap-3">
           {/* Company Info */}
-          <div className="bg-slate-50 p-2.5 rounded-xl border border-slate-100 flex flex-col gap-0.5">
+          <div className="bg-slate-50 p-3 rounded-xl border border-slate-100 flex flex-col gap-0.5">
             <div className="flex items-center gap-1.5 text-slate-800 font-semibold text-xs">
               <span>🏢</span>
               <span>{user.company.name}</span>
@@ -81,7 +81,7 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
             <p className="text-[11px] text-slate-500 italic pl-5">
               "{user.company.catchPhrase}"
             </p>
-            <div className="mt-1 pl-5">
+            <div className="mt-1.5 pl-5">
               <span className="inline-flex items-center gap-1 text-[10px] bg-emerald-100 text-emerald-800 font-medium px-2 py-0.5 rounded-full">
                 <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
                 {user.company.bs}
@@ -111,7 +111,7 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
                 href={`https://${user.website}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-xs font-semibold text-blue-600 hover:underline"
+                className="text-xs font-semibold text-indigo-600 hover:underline"
               >
                 {user.website}
               </a>
@@ -141,12 +141,12 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
             </div>
           </div>
 
-          <div className="pt-4 mt-4 border-t border-slate-100 flex gap-2">
+          <div className="pt-4 mt-1 border-t border-slate-100 flex gap-2">
             {/* Update Button opens Modal */}
             <button
               type="button"
               onClick={() => setIsEditing(true)}
-              className="flex-1 bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-2 px-3 rounded-xl shadow-sm shadow-blue-500/20 transition-all duration-200 text-xs sm:text-sm"
+              className="flex-1 bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold py-2 px-3 rounded-xl shadow-sm shadow-indigo-500/20 transition-all duration-200 text-xs sm:text-sm"
             >
               Update
             </button>
@@ -155,7 +155,7 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
             <button
               type="button"
               onClick={() => deleteUser(user.id)}
-              className="flex-1 bg-red-600 hover:bg-red-700 active:bg-red-800 text-white font-semibold py-2 px-3 rounded-xl shadow-sm shadow-red-500/20 transition-all duration-200 text-xs sm:text-sm"
+              className="flex-1 bg-white hover:bg-red-50 active:bg-red-100 text-red-600 font-semibold py-2 px-3 rounded-xl border border-red-200 transition-all duration-200 text-xs sm:text-sm"
             >
               Delete
             </button>
@@ -165,12 +165,17 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
 
       {/* Edit User Modal Overlay */}
       {isEditing && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/40 backdrop-blur-sm p-4">
-          <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-slate-100 overflow-hidden animate-in fade-in zoom-in duration-200">
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-slate-900/50 backdrop-blur-sm p-4">
+          <div className="bg-white w-full max-w-md rounded-2xl shadow-2xl border border-slate-100 overflow-hidden">
             <div className="bg-slate-50 px-6 py-4 border-b border-slate-100 flex justify-between items-center">
-              <h3 className="text-base font-bold text-slate-800">
-                Update User Profile
-              </h3>
+              <div>
+                <span className="text-[10px] font-semibold tracking-[0.15em] uppercase text-indigo-500">
+                  Edit Profile
+                </span>
+                <h3 className="text-base font-bold text-slate-900">
+                  Update User Profile
+                </h3>
+              </div>
               <button
                 type="button"
                 onClick={() => setIsEditing(false)}
@@ -193,7 +198,7 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
                   name="name"
                   value={formData.name || ""}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
                   required
                 />
               </div>
@@ -207,7 +212,7 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
                   name="username"
                   value={formData.username || ""}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
                   required
                 />
               </div>
@@ -221,7 +226,7 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
                   name="email"
                   value={formData.email || ""}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
                   required
                 />
               </div>
@@ -235,7 +240,7 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
                   name="phone"
                   value={formData.phone || ""}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
                   required
                 />
               </div>
@@ -249,7 +254,7 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
                   name="website"
                   value={formData.website || ""}
                   onChange={handleInputChange}
-                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500"
+                  className="w-full px-3 py-2 border border-slate-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
                   required
                 />
               </div>
@@ -264,7 +269,7 @@ const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
                 </button>
                 <button
                   type="submit"
-                  className="flex-1 bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2.5 rounded-xl shadow-sm shadow-blue-500/20 transition-all"
+                  className="flex-1 bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-xl shadow-sm shadow-indigo-500/20 transition-all"
                 >
                   Save Changes
                 </button>

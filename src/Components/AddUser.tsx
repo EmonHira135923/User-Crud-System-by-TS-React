@@ -67,18 +67,26 @@ const AddUser: React.FC<AddUserProps> = ({ users, setUsers }) => {
   };
 
   return (
-    <div className="max-w-md mx-auto my-8 p-6 bg-white border border-slate-200 shadow-md rounded-2xl">
+    <div className="max-w-md mx-auto my-8 p-6 bg-white border border-slate-200 shadow-sm rounded-2xl">
       {/* Header */}
       <div className="mb-6">
-        <h1 className="text-2xl font-extrabold text-slate-800">Add New User</h1>
-
+        <span className="text-[11px] font-semibold tracking-[0.2em] uppercase text-indigo-500">
+          New Entry
+        </span>
+        <h1 className="text-2xl font-extrabold text-slate-900 tracking-tight mt-1">
+          Add New User
+        </h1>
         <p className="text-xs text-slate-500 mt-1">
           Enter user details below to create a new profile.
         </p>
       </div>
 
       {/* Error */}
-      {error && <p className="mb-4 text-sm text-red-600">{error}</p>}
+      {error && (
+        <div className="mb-4 bg-red-50 border-l-4 border-red-500 px-3 py-2 rounded-r-lg">
+          <p className="text-xs font-medium text-red-700">{error}</p>
+        </div>
+      )}
 
       {/* Form Fields */}
       <div className="flex flex-col gap-4">
@@ -98,7 +106,7 @@ const AddUser: React.FC<AddUserProps> = ({ users, setUsers }) => {
               })
             }
             placeholder="e.g. John Doe"
-            className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-800 placeholder:text-slate-400"
+            className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-slate-800 placeholder:text-slate-400"
           />
         </div>
 
@@ -123,7 +131,7 @@ const AddUser: React.FC<AddUserProps> = ({ users, setUsers }) => {
                 })
               }
               placeholder="johndoe"
-              className="w-full pl-8 pr-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-800 placeholder:text-slate-400"
+              className="w-full pl-8 pr-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-slate-800 placeholder:text-slate-400"
             />
           </div>
         </div>
@@ -144,7 +152,7 @@ const AddUser: React.FC<AddUserProps> = ({ users, setUsers }) => {
               })
             }
             placeholder="john@example.com"
-            className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all text-slate-800 placeholder:text-slate-400"
+            className="w-full px-3.5 py-2 text-sm bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500 transition-all text-slate-800 placeholder:text-slate-400"
           />
         </div>
 
@@ -152,7 +160,7 @@ const AddUser: React.FC<AddUserProps> = ({ users, setUsers }) => {
         <button
           onClick={handleAddUserBtn}
           type="button"
-          className="mt-2 w-full bg-blue-600 hover:bg-blue-700 active:bg-blue-800 text-white font-semibold py-2.5 px-4 rounded-xl shadow-md shadow-blue-500/20 transition-all duration-200 text-sm"
+          className="mt-2 w-full bg-indigo-600 hover:bg-indigo-700 active:bg-indigo-800 text-white font-semibold py-2.5 px-4 rounded-xl shadow-sm shadow-indigo-500/20 transition-all duration-200 text-sm"
         >
           Add User
         </button>
