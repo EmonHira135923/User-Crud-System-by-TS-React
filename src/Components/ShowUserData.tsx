@@ -4,12 +4,18 @@ import { deleteUsers } from "../Services/user/api";
 
 export interface UserProps {
   user: UserTypes;
+  setUsers: React.Dispatch<React.SetStateAction<UserTypes[]>>;
+  setError: React.Dispatch<React.SetStateAction<string | null>>;
 }
 
-const ShowUserData: React.FC<UserProps> = ({ user }) => {
+const ShowUserData: React.FC<UserProps> = ({ user, setUsers, setError }) => {
   const deleteUser = async (id: number) => {
-    const res = await deleteUsers(id);
-    console.log(res);
+    try {
+      await deleteUsers(id);
+      setUsers((user) => user.filter((u) => u.id !== id));
+    } catch (err) {
+      setError("Failed To Delete Users");
+    }
   };
 
   return (
